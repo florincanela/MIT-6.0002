@@ -34,7 +34,36 @@ while sum(visited.values()):
 
 
 
-from ps1_partition import get_partitions
-MIN = 999
-for partition in get_partitions(cows):
+# from ps1_partition import get_partitions
+
+# import time
+# start = time.time()
+# Min = 999
+# for partition in get_partitions(cows):
+#     check = 0 
     
+#     for subset in partition:
+#         acu_w = 0       
+#         for cow in subset:
+#             acu_w += cows[cow]
+
+#         if acu_w <= limit:
+#             check += 1
+
+
+#     if check == len(partition) < Min:
+#         res = partition
+#         Min = len(partition)
+
+# print(time.time() - start)
+# print(res)
+
+# x = res
+# weight_per_subset = []
+# for sub in x:
+#     temp = []
+#     for cow in sub:
+#         temp.append(cows[cow])
+#     weight_per_subset.append(sum(temp))
+
+# print(weight_per_subset)

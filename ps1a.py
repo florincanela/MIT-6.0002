@@ -28,7 +28,7 @@ def load_cows(filename):
     with open(filename, 'r') as file:
         for line in file.readlines():
             line = line.split(",")
-            dictionary[line[0]] = line[1].replace("\n", "")
+            dictionary[line[0]] = int(line[1].replace("\n", ""))
 
     return dictionary
 
@@ -95,7 +95,25 @@ def brute_force_cow_transport(cows,limit=10):
     transported on a particular trip and the overall list containing all the
     trips
     """
-    
+    Min = 999
+    for partition in get_partitions(cows):
+        check = 0 
+        
+        for subset in partition:
+            acu_w = 0       
+            for cow in subset:
+                acu_w += cows[cow]
+
+            if acu_w <= limit:
+                check += 1
+
+
+        if check == len(partition) < Min:
+            res = partition
+            Min = len(partition)
+
+
+    return res
     
         
 # Problem 4
@@ -112,5 +130,22 @@ def compare_cow_transport_algorithms():
     Returns:
     Does not return anything.
     """
-    # TODO: Your code here
-    pass
+    print("=" *50)
+    cows = load_cows("ps1_cow_data.txt")
+    start1 = time.time()
+    print(greedy_cow_transport(cows))
+    print(time.time() - start1)
+    print("=" *50)
+    start2 = time.time()
+    print(brute_force_cow_transport(cows))
+    print(time.time() - start2)
+    print("=" *50)
+
+
+
+def main():
+    compare_cow_transport_algorithms()
+
+
+if __name__ == "__main__":
+    main()
