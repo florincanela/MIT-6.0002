@@ -22,13 +22,18 @@ def dp_make_weight(egg_weights, target_weight, memo = {}):
     
     Returns: int, smallest number of eggs needed to make target weight
     """
-    # TODO: Your code here
-    pass
-
+    if target_weight < 1:
+        return target_weight
+    #im dividing the target weight by largest egg_weight--then im calling the function
+    #  again with the rest of the list(egg weights) and the remainder of the division
+    return (target_weight // egg_weights[-1]) + dp_make_weight(egg_weights[:-1], 
+                                                (target_weight % egg_weights[-1]))
+    
 # EXAMPLE TESTING CODE, feel free to add more if you'd like
 if __name__ == '__main__':
     egg_weights = (1, 5, 10, 25)
-    n = 99
+    # egg_weights = (25, 10, 5, 1)
+    n = 10
     print("Egg weights = (1, 5, 10, 25)")
     print("n = 99")
     print("Expected ouput: 9 (3 * 25 + 2 * 10 + 4 * 1 = 99)")
